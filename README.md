@@ -1,7 +1,4 @@
-
-![Frame 1](https://github.com/GamerVII-NET/minecraft-launcher/assets/111225722/e0a5035b-6898-4579-b8b5-0fcf1cd93ca6)
-
-GamerVII Launcher
+AkvilaLauncher
 =======
 The Minecraft Launcher is a user-friendly application designed to streamline the process of launching Minecraft and managing game settings. It provides an intuitive interface and essential features to enhance the Minecraft gaming experience.
 
@@ -9,7 +6,7 @@ The Minecraft Launcher is a user-friendly application designed to streamline the
 
 ### Prerequisites
 
-Before installing the GamerVII Launcher, ensure you have the following prerequisites:
+Before installing the AkvilaLauncher, ensure you have the following prerequisites:
 
 - **.NET 8.0 SDK:** You need to have .NET 8.0 SDK installed on your system. You can download it
   from [Microsoft's official website](https://dotnet.microsoft.com/download/dotnet/8.0) or use a package manager
@@ -18,13 +15,13 @@ Before installing the GamerVII Launcher, ensure you have the following prerequis
 - **Git:** Ensure Git is installed on your system. You can download it from
   the [Git website](https://git-scm.com/downloads) or use a package manager.
 
-### Steps to Install GamerVII Launcher
+### Steps to Install AkvilaLauncher
 
 1. **Clone the Repository:**
    Open a terminal and clone the repository using Git with the `--recursive` option:
    ```bash
-   git clone --recursive https://github.com/GamerVII-NET/minecraft-launcher.git
-   cd minecraft-launcher
+   git clone --recursive https://github.com/AkvilaLauncher/Akvila.Launcher.git
+   cd Akvila.Launcher
    ```
 
 2. **Build the Project:**
@@ -52,7 +49,7 @@ For additional help, check the project's issue tracker or community forums.
 
 ### Updating
 
-To update the GamerVII Launcher to the latest version, navigate to the project directory and pull the latest changes
+To update the AkvilaLauncher to the latest version, navigate to the project directory and pull the latest changes
 from the repository:
 
 ```bash
@@ -62,11 +59,3 @@ dotnet build
 ```
 
 Then, run the launcher again using the command mentioned earlier.
-
-### Uninstallation
-
-To uninstall the GamerVII Launcher, simply delete the project directory:
-
-```bash
-rm -rf minecraft-launcher
-```
