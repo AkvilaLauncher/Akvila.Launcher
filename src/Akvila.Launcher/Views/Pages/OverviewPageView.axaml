@@ -94,7 +94,7 @@
                     <components:AkvilaButton Grid.Column="0"
                                           IconPath="/Assets/Images/document.svg"
                                           Command="{Binding OpenLinkCommand}"
-                                          CommandParameter="https://vk.com/recloud.studio"
+                                          CommandParameter="https://vk.com"
                                           IconSize="22"
                                           Classes="TextIcon Additional"
                                           Text="{x:Static lang:Resources.ModsList}" />
@@ -107,14 +107,14 @@
                                               IconSize="24"
                                               Padding="0, 2, 0, 0"
                                               Command="{Binding OpenLinkCommand}"
-                                              CommandParameter="https://vk.com/recloud.studio"
+                                              CommandParameter="https://vk.com"
                                               Classes="Icon Additional"
                                               Text="{x:Static lang:Resources.Website}" />
 
                         <components:AkvilaButton IconPath="/Assets/Images/app.svg"
                                               IconSize="22"
                                               Command="{Binding OpenLinkCommand}"
-                                              CommandParameter="https://recloud.tech"
+                                              CommandParameter="https://example.com"
                                               Padding="15, 0, 15, 0"
                                               Classes="TextIcon Additional"
                                               Text="{x:Static lang:Resources.Website}" />
