@@ -165,17 +165,21 @@
     <value>空</value>
   </data>
   <data name="MinecraftExceptionStartException" xml:space="preserve">
-    <value>游戏运行时发生错误。管理员已收到您的错误详情。
-
-
-
-
-
-
-
-</value>
+    <value>游戏运行时发生错误。管理员已收到您的错误详情。</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>新闻</value>
+  </data>
+  <data name="OpenBrowser" xml:space="preserve">
+    <value>在浏览器中打开</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="MicrosoftLogin" xml:space="preserve">
+    <value>使用 Microsoft 登录</value>
+  </data>
+  <data name="MicrosoftLoginDescription" xml:space="preserve">
+    <value>要登录，请使用网络浏览器打开页面并输入下面的代码</value>
   </data>
 </root>

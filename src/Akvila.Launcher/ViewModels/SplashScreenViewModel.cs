@@ -12,6 +12,8 @@ using Akvila.Launcher.Core.Services;
 using Akvila.Launcher.ViewModels.Base;
 using Akvila.Client;
 using Akvila.Client.Models;
+using Akvila.Web.Api.Dto.Integration;
+using Akvila.Web.Api.Dto.Messages;
 using AkvilaCore.Interfaces.Enums;
 using AkvilaCore.Interfaces.Storage;
 using ReactiveUI.Fody.Helpers;
@@ -25,13 +27,16 @@ public class SplashScreenViewModel : WindowViewModelBase {
     private readonly ILocalizationService _localizationService;
     private readonly IAkvilaClientManager _manager;
     private readonly ISystemService _systemService;
+    private readonly IApplicationStateService _applicationStateService;
+
     public IAkvilaClientManager Manager => _manager;
 
     public SplashScreenViewModel(
         ISystemService? systemService = null,
         IAkvilaClientManager? manager = null,
         IStorageService? storage = null,
-        ILocalizationService? localizationService = null) {
+        ILocalizationService? localizationService = null,
+        IApplicationStateService? applicationStateService = null) {
         _storageService = storage ?? Locator.Current.GetService<IStorageService>()
             ?? throw new ServiceNotFoundException(typeof(IStorageService));
 
@@ -43,6 +48,9 @@ public class SplashScreenViewModel : WindowViewModelBase {
 
         _localizationService = localizationService ?? Locator.Current.GetService<ILocalizationService>()
             ?? throw new ServiceNotFoundException(typeof(ILocalizationService));
+
+        _applicationStateService = applicationStateService ?? Locator.Current.GetService<IApplicationStateService>()
+            ?? throw new ServiceNotFoundException(typeof(IApplicationStateService));
 
         StatusText = _localizationService.GetString(ResourceKeysDictionary.PreparingLaunch);
     }
@@ -79,6 +87,13 @@ public class SplashScreenViewModel : WindowViewModelBase {
                 }
             }
 
+            ResponseMessage<AuthTypeReadDto> authType = await _manager.GetAuthType();
+            AuthTypeReadDto authTypeData = authType.Data ?? new AuthTypeReadDto {
+                AuthType = AuthGeneralType.Undefined,
+                Data = string.Empty
+            };
+            await _applicationStateService.SetAuthTypeAsync(authTypeData);
+
             var authUser = await _storageService.GetAsync<AuthUser>(StorageConstants.User);
 
             IsAuth = authUser != null
@@ -86,8 +101,7 @@ public class SplashScreenViewModel : WindowViewModelBase {
                      && authUser is { IsAuth: true }
                      && await ValidateToken(authUser)
                      && await ValidateTokenWithApi(authUser);
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             SentrySdk.CaptureException(exception);
         }
     }
@@ -102,8 +116,8 @@ public class SplashScreenViewModel : WindowViewModelBase {
 
         var claims = jwtToken.Claims.FirstOrDefault(c => c.Type == "name");
 
-        if (claims?.Value == user.Name)
-            return true;
+        if (_applicationStateService is { HasAuthType: true, AuthType.AuthType: AuthGeneralType.Microsoft }) return true;
+        if (claims?.Value == user.Name) return true;
 
         await _storageService.SetAsync<IUser?>(StorageConstants.User, null).ConfigureAwait(false);
 
@@ -111,6 +125,8 @@ public class SplashScreenViewModel : WindowViewModelBase {
     }
 
     private async Task<bool> ValidateTokenWithApi(AuthUser user) {
+        if (_applicationStateService is { HasAuthType: true, AuthType.AuthType: AuthGeneralType.Microsoft }) return true;
+
         var userData = await _manager.Auth(user.AccessToken)
             .ConfigureAwait(false);
 

@@ -30,6 +30,8 @@ public static class ServiceLocator {
         CheckAndChangeInstallationFolder(storageService, manager);
         CheckAndChangeLanguage(storageService, systemService);
         Locator.CurrentMutable.RegisterConstant(new VpnChecker(), typeof(IVpnChecker));
+        Locator.CurrentMutable.RegisterConstant(new ApplicationStateService(), typeof(IApplicationStateService));
+        Locator.CurrentMutable.RegisterConstant(new MicrosoftAuthService(), typeof(IMicrosoftAuthService));
 
         AppDomain.CurrentDomain.UnhandledException += (_, args) => {
             SentrySdk.CaptureException((Exception)args.ExceptionObject);

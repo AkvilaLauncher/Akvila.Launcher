@@ -12,9 +12,7 @@
              x:DataType="vm:LoginPageViewModel"
              x:Class="Akvila.Launcher.Views.Pages.LoginPageView">
 
-
     <Grid>
-
         <!-- Background -->
         <!-- <components:BackgroundComponent /> -->
 
@@ -24,20 +22,28 @@
                                      Spacing="20">
 
             <StackPanel Classes="MarginBottom">
-
                 <components:LogoComponent Classes="TextLogo"
                                           HorizontalAlignment="Center" />
             </StackPanel>
 
             <Border Classes="Separator" />
 
-            <StackPanel Classes="MarginBottom">
+            <StackPanel Classes="MarginBottom" IsVisible="{Binding ShowInfoMessage}">
+                <TextBlock Text="{Binding InfoMessage}"
+                           Classes="FormText"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           Foreground="Tomato"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+            <StackPanel Classes="MarginBottom" IsVisible="{Binding ShowLoginFields}">
                 <TextBlock Text="{x:Static lang:Resources.Login}"
                            Classes="FormText" />
                 <TextBox Classes="FormBox" Text="{Binding Login}" />
             </StackPanel>
 
-            <StackPanel Classes="MarginBottom">
+            <StackPanel Classes="MarginBottom" IsVisible="{Binding ShowPasswordField}">
                 <TextBlock Text="{x:Static lang:Resources.Password}"
                            Classes="FormText" />
                 <TextBox Classes="FormBox"
@@ -50,17 +56,27 @@
                        Foreground="Tomato"
                        Margin="0, 0, 0, 20" />
 
-
             <components:AkvilaButton Command="{Binding LoginCommand}"
-                                  HorizontalAlignment="Center"
-                                  IsDefault="True"
-                                  IsVisible="{Binding IsNotProcessing}"
-                                  Classes="TextIcon Primary"
-                                  IconPath="/Assets/Images/login.svg"
-                                  IconSize="24"
-                                  FontWeight="Bold"
-                                  Text="{x:Static lang:Resources.AuthButtonText}" />
+                                     HorizontalAlignment="Center"
+                                     IsDefault="True"
+                                     IsVisible="{Binding ShowStandardLoginButton}"
+                                     Classes="TextIcon Primary"
+                                     IconPath="/Assets/Images/login.svg"
+                                     IconSize="24"
+                                     FontWeight="Bold"
+                                     Text="{x:Static lang:Resources.AuthButtonText}" />
 
+            <components:AkvilaButton Command="{Binding MicrosoftLoginCommand}"
+                                     HorizontalAlignment="Center"
+                                     IsDefault="True"
+                                     IsVisible="{Binding ShowMicrosoftLoginButton}"
+                                     Classes="TextIcon Primary"
+                                     IconPath="/Assets/Images/microsoft.svg"
+                                     IconSize="16"
+                                     FontWeight="Bold"
+                                     Text="{x:Static lang:Resources.MicrosoftLogin}" />
+
+            <!-- Loading indicator -->
             <ProgressBar IsIndeterminate="{Binding IsProcessing}"
                          Classes="ProgressBar"
                          IsVisible="{Binding IsProcessing}"
@@ -70,6 +86,18 @@
 
         </components:StackFrameBorder>
 
-    </Grid>
+        <Border IsVisible="{Binding IsShowingMicrosoftModal}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                ZIndex="100">
+            <components:MicrosoftAuthModal DataContext="{Binding MicrosoftAuthModal}" />
+        </Border>
 
+        <Border IsVisible="{Binding IsShowingMicrosoftProgressModal}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                ZIndex="100">
+            <components:MicrosoftAuthProgressModal DataContext="{Binding MicrosoftAuthProgressModal}" />
+        </Border>
+    </Grid>
 </UserControl>

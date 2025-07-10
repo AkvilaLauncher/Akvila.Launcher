@@ -1,0 +1,113 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Akvila.Launcher.ViewModels.Components"
+             xmlns:components="clr-namespace:Akvila.Launcher.Views.Components"
+             xmlns:lang="clr-namespace:Akvila.Launcher.Assets.Resources"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="450"
+             x:DataType="vm:MicrosoftAuthModalModel"
+             x:Class="Akvila.Launcher.Views.Components.MicrosoftAuthModal">
+
+    <Border Background="{StaticResource BackgroundOverlay}"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+
+        <!-- Modal Content -->
+        <components:StackFrameBorder VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                     Width="350"
+                                     Spacing="20">
+
+            <StackPanel Classes="MarginBottom">
+                <TextBlock Text="{x:Static lang:Resources.MicrosoftLogin}"
+                           Classes="FormText"
+                           HorizontalAlignment="Center"
+                           FontSize="18"
+                           FontWeight="Bold" />
+            </StackPanel>
+
+            <StackPanel Classes="MarginBottom">
+                <TextBlock Text="{x:Static lang:Resources.MicrosoftLoginDescription}"
+                           Classes="FormText"
+
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,5" />
+
+                <Button Content="{Binding VerificationUrl}"
+                        Command="{Binding OpenBrowserCommand}"
+                        Classes="FormText"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Foreground="{StaticResource PrimaryColor}"
+                        Cursor="Hand"
+                        Padding="0"
+                        Margin="0,0,0,10">
+                    <Button.Styles>
+                        <Style Selector="Button">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                        </Style>
+                        <Style Selector="Button:pointerover">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                        </Style>
+                        <Style Selector="Button:pressed">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                        </Style>
+                    </Button.Styles>
+                </Button>
+
+                <Border Background="{StaticResource SecondaryColorHover}"
+                        BorderBrush="{StaticResource FrameBackgroundBorderColor}"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="15">
+                    <TextBox Text="{Binding UserCode}"
+                             IsReadOnly="True"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             HorizontalAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             FontSize="24"
+                             FontWeight="Bold"
+                             FontFamily="Consolas"
+                             CaretBrush="Transparent"/>
+                </Border>
+            </StackPanel>
+
+            <!-- Progress indicator -->
+            <ProgressBar IsIndeterminate="{Binding IsPolling}"
+                         Classes="ProgressBar"
+                         IsVisible="{Binding IsPolling}"
+                         Margin="0,0,0,20"
+                         Height="3" />
+
+            <!-- Action buttons -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Spacing="15">
+
+                <components:AkvilaButton Command="{Binding OpenBrowserCommand}"
+                                         Classes="TextIcon Primary"
+                                         IconPath="/Assets/Images/app.svg"
+                                         IconSize="16"
+                                         Text="{x:Static lang:Resources.OpenBrowser}" />
+
+                <components:AkvilaButton Command="{Binding CancelCommand}"
+                                         Classes="TextIcon Secondary"
+                                         IconPath="/Assets/Images/back.svg"
+                                         IconSize="16"
+                                         Text="{x:Static lang:Resources.Cancel}" />
+            </StackPanel>
+
+        </components:StackFrameBorder>
+    </Border>
+</UserControl>

@@ -169,11 +169,21 @@
     <value>Empty</value>
   </data>
   <data name="MinecraftExceptionStartException" xml:space="preserve">
-    <value>An error occurred during the game. The administration has already received the details of your error.
-
-</value>
+    <value>An error occurred during the game. The administration has already received the details of your error.</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>News</value>
+  </data>
+  <data name="OpenBrowser" xml:space="preserve">
+    <value>Open Browser</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="MicrosoftLogin" xml:space="preserve">
+    <value>Login with Microsoft</value>
+  </data>
+  <data name="MicrosoftLoginDescription" xml:space="preserve">
+    <value>To sign in, use a web browser to open the page and enter the code below</value>
   </data>
 </root>

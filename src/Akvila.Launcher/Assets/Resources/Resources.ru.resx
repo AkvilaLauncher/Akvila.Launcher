@@ -174,4 +174,16 @@
   <data name="News" xml:space="preserve">
     <value>Новости</value>
   </data>
+  <data name="OpenBrowser" xml:space="preserve">
+    <value>Открыть в браузере</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="MicrosoftLogin" xml:space="preserve">
+    <value>Войти через Microsoft</value>
+  </data>
+  <data name="MicrosoftLoginDescription" xml:space="preserve">
+    <value>Для входа используйте веб-браузер, откройте страницу и введите код ниже</value>
+  </data>
 </root>

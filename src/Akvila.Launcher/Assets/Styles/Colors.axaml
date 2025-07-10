@@ -21,6 +21,9 @@
     <SolidColorBrush x:Key="FormBorderColor">#212121</SolidColorBrush>
     <SolidColorBrush x:Key="FormBorderHoverColor">#2C2C2C</SolidColorBrush>
 
+    <SolidColorBrush x:Key="ErrorColor">#D03E3E</SolidColorBrush>
+    <SolidColorBrush x:Key="ErrorBackgroundColor">#33D03E3E</SolidColorBrush>
+
 
     <SolidColorBrush x:Key="BadgeBorder">#20FFFFFF</SolidColorBrush>
 

@@ -354,5 +354,29 @@ namespace Akvila.Launcher.Assets.Resources {
                 return ResourceManager.GetString("News", resourceCulture);
             }
         }
+
+        public static string OpenBrowser {
+            get {
+                return ResourceManager.GetString("OpenBrowser", resourceCulture);
+            }
+        }
+
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+
+        public static string MicrosoftLogin {
+            get {
+                return ResourceManager.GetString("MicrosoftLogin", resourceCulture);
+            }
+        }
+
+        public static string MicrosoftLoginDescription {
+            get {
+                return ResourceManager.GetString("MicrosoftLoginDescription", resourceCulture);
+            }
+        }
     }
 }
